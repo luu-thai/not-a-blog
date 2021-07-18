@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useState } from 'react';
+import { Luu } from './components/luu/luu';
 
 function App() {
   const pages = { sakshi: 'Sakshi', luu: 'Luu' }
@@ -15,7 +16,7 @@ function App() {
   
   } else if(state === pages.luu) {
 
-    return <p>This is Luu's Page</p>
+    return <Luu></Luu>;
 
   } else {
   
