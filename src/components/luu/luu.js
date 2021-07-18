@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
+import { Board } from './tic-tac-toe/board';
+import './luu.css';
 
 export function Luu(props) {
     const [state, setState] = useState(false);
 
-    
+
     useEffect(() => {
-        console.log('use effect', state)        
-    },
-    [state]);
+        console.log('use effect', state)
+    }, [state]);
 
     console.count(`rendering`)
     function handle() {
@@ -15,9 +16,9 @@ export function Luu(props) {
     }
 
     return (
-        <div>
-            <p> { state ? "YOLO" : "This is Luu's Page" } </p>
-            <button onClick={() => handle()}> Click ME </button>
+        <div className="main">
+            <Board></Board>
+            <button style={{ width: "325px" }} onClick={() => handle()}> Click ME </button>
         </div>
     )
 }

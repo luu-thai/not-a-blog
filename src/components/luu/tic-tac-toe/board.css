@@ -1,0 +1,15 @@
+
+.board {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 80px 80px 80px;
+    grid-column-gap: 10px;
+    column-gap: 10px;
+    grid-row-gap: 15px;
+    row-gap: 15px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+}
+
