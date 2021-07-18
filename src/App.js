@@ -1,33 +1,38 @@
 import './App.css';
+import React, { useState } from 'react';
 
 function App() {
-  return (
-    <div className="App">
-      <header>
-      </header>
-      <body className="App-body">
-        <div className="buttonLinks">
-        <div>
-        <button
-          className="App-link"
-          type='button'
-        >
-         <a href="/sakshi"><b>Sakshi</b></a> 
-        </button>
+  const pages = { sakshi: 'Sakshi', luu: 'Luu' }
+  const [state, setState ] = useState(null)
+
+  console.log('Current State:', state);
+
+  const handleLink = (pages) => setState(pages);
+
+  if (state === pages.sakshi) {
+  
+    return <p>This is Sakshi's Page</p>
+  
+  } else if(state === pages.luu) {
+
+    return <p>This is Luu's Page</p>
+
+  } else {
+  
+    return (
+      <div className="App-body">
+        <div className="buttonLinks">  
+            <button onClick={() => (handleLink(pages.sakshi))} className="App-link" type='button'>
+              <b>Sakshi</b>
+            </button>
+            <button onClick={() => (handleLink(pages.luu))} className="App-link" type='button'>
+              <b> Luu</b>
+            </button>
         </div>
-        <div>
-        <button
-          className="App-link"
-          type='button'
-        >
-          <a href="/luu"><b> Luu</b></a>
-        </button>
-        </div>
-        </div>
-      </body>
-      <footer></footer>
-    </div>
-  );
+      </div>
+    );
+  
+  }
 }
 
 export default App;
