@@ -13,3 +13,16 @@
 
 }
 
+.win {
+    background: #bffabf;
+}
+
+.boardSpace {
+    border: dashed;
+    width: 100%;
+    HEIGHT: 100%;
+}
+
+.resetButton {
+    margin-top: 1rem
+}

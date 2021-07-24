@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react';
 import { Board } from './tic-tac-toe/board';
 import './luu.css';
 
 export function Luu(props) {
-    const [state, setState] = useState(false);
+    console.log('Passed props', props)
 
-
-    useEffect(() => {
-        console.log('use effect', state)
-    }, [state]);
-
-    console.count(`rendering`)
-    function handle() {
-        setState(!state)
-    }
 
     return (
         <div className="main">
-            <Board></Board>
-            <button style={{ width: "325px" }} onClick={() => handle()}> Click ME </button>
+            <div className="header">Header</div>
+            <Board/>
+            <div className="footer">Footer</div>
         </div>
     )
 }
+
+// TODO
+// Phase 1 //
+// Need to manage the state of the game
+// Need to add click management to all the buttons
+// Determine win condition
+
+// Phase 2 //
+// Also Second Player to Join. 
+// Manage state across browsers 

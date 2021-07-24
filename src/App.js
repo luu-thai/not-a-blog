@@ -16,7 +16,7 @@ function App() {
   
   } else if(state === pages.luu) {
 
-    return <Luu></Luu>;
+    return <Luu/>;
 
   } else {
   
