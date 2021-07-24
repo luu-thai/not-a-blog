@@ -58,8 +58,11 @@ export function Board() {
             <div className='board'>
                 {
                     buttons.map((buttonIndex) =>
-                        <div onClick={() => draw(buttonIndex)} className={`boardSpace ${gameOver && winningCondition.includes(buttonIndex) ? 'win' : ''}`}>
-                            {boardState[buttonIndex]}
+                        <div 
+                            onClick={() => draw(buttonIndex)} 
+                            className={`boardSpace ${gameOver && winningCondition.includes(buttonIndex) ? 'win' : ''}`}
+                        >
+                            {boardState[buttonIndex]}    
                         </div>
                     )
                 }

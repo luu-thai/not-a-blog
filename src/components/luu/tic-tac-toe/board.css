@@ -21,6 +21,8 @@
     border: dashed;
     width: 100%;
     HEIGHT: 100%;
+    text-align: center;
+    line-height: 4.5;
 }
 
 .resetButton {
