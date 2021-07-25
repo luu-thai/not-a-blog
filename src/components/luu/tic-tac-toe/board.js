@@ -15,21 +15,33 @@ const states = {
 const defaultBoardState = [states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty];
 
 export function Board() {
-    const [turn, setTurn] = useState(0);
+    const [turn, setTurn] = useState(states.playerOne);
     const [gameOver, setGameOver] = useState(false);
     const [boardState, setBoardState] = useState([...defaultBoardState]);
     const [winningCondition, setWinningCondition] = useState([]);
+    const [gameResults, setGameResults] = useState([]);
 
     useEffect(() => {
         const playerOneWins = calculateWin(states.playerOne)
         const playerTwoWins = calculateWin(states.playerTwo)
 
-        if (playerOneWins) setWinningCondition(playerOneWins);
-        if (playerTwoWins) setWinningCondition(playerTwoWins);
+        if (playerOneWins) {
+            setWinningCondition(playerOneWins);
+            setGameResults([states.playerOne, ...gameResults]);
+        }
 
+        if (playerTwoWins) {
+            setWinningCondition(playerTwoWins);
+            setGameResults([states.playerTwo, ...gameResults]);
+        }
         if (playerTwoWins || playerOneWins) setGameOver(true);
+        if (boardState.every(position => position !== states.empty)) setGameOver(true);
     }, [turn]
     );
+
+    useEffect(() => {
+        if(gameOver) console.log(gameResults);
+    });
 
     function calculateWin(playerSymbol) {
         const playerPositions = [];
@@ -39,18 +51,17 @@ export function Board() {
 
     function reset() {
         setBoardState([...defaultBoardState]);
-        setTurn(0);
+        setTurn(states.playerOne);
+        setWinningCondition([]);
         setGameOver(false);
     }
 
     function draw(index) {
-        if (gameOver || boardState[index] !== states.empty) {
-            return;
+        if (!gameOver && boardState[index] === states.empty) {
+            boardState[index] = turn;
+            setTurn(turn === states.playerOne ? states.playerTwo : states.playerOne);
+            setBoardState(boardState);
         }
-
-        boardState[index] = turn ? states.playerOne : states.playerTwo;
-        setBoardState(boardState);
-        setTurn(turn ? 0 : 1);
     }
 
     return (
@@ -58,11 +69,16 @@ export function Board() {
             <div className='board'>
                 {
                     buttons.map((buttonIndex) =>
-                        <div 
-                            onClick={() => draw(buttonIndex)} 
-                            className={`boardSpace ${gameOver && winningCondition.includes(buttonIndex) ? 'win' : ''}`}
+                        <div
+                            onClick={() => draw(buttonIndex)}
+                            className={
+                                'boardSpace' + 
+                                ` ${gameOver && winningCondition.length === 0 ? 'fail' : ''}` + 
+                                ` ${gameOver && winningCondition.includes(buttonIndex) ? 'win' : ''}` + 
+                                ` ${boardState[buttonIndex] === states.empty && !gameOver ? 'selectable' : ''}`
+                            }
                         >
-                            {boardState[buttonIndex]}    
+                            {boardState[buttonIndex]}
                         </div>
                     )
                 }
