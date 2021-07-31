@@ -1,31 +1,26 @@
 import { List } from '@material-ui/core';
 import React,{useState} from 'react';
-import { BlogsList } from '../blog-list/blog';
 import './form.css';
+import {BlogsList}  from './../blog-list/blog';
 export const Form = (props)=>{
-    const initialFormState = { id: null, title: '', content: '' }
-    const [list, setList] = useState(initialFormState)  ;
-
-    const updateBlog=(event)=>{
-        const{title,value}= event.target.value;
-        setList({...list, [title]:value});
-
-    }
+    const{handleSubmit,updateForm}=props;
     return(
         <div>
-            <form className="FormBody">
+            <form className="FormBody" onSubmit={handleSubmit}>
                 <label>
                     Title:
-                    <input type="text" name="title" value={list.title} onChange={updateBlog}/>
+                    <input type="text" name="title"  onChange={updateForm}/>
                 </label>
                 <label>
                     Content
-                    <input type="text" name="content" value={list.content} onChange={updateBlog}/>
+                    <textarea type="text" name="content"  onChange={updateForm}/>
                 </label>
-                <button type="submit" >Save</button>
+                <button type="submit" value="Submit" >Save</button>
                 <button type="button">Edit</button>
                 <button type="button">Delete</button>
             </form>
+            {/* <BlogsList list={list} /> */}
         </div>
+
     )
 }

@@ -8,3 +8,9 @@
 .FormHeader{
    margin:20px;
 }
+.MainContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 50%
+}
