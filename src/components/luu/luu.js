@@ -1,4 +1,5 @@
-import { Board } from './tic-tac-toe/board';
+import { Board } from './tic-tac-toe/board/board';
+import { GameHistory } from './tic-tac-toe/history/gameHistory';
 import './luu.css';
 
 export function Luu(props) {
@@ -9,6 +10,7 @@ export function Luu(props) {
         <div className="main">
             <div className="header">Header</div>
             <Board/>
+            <GameHistory/>
             <div className="footer">Footer</div>
         </div>
     )

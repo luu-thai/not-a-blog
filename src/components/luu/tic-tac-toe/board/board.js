@@ -1,5 +1,7 @@
 import './board.css';
+import '../history/gameHistory';
 import React, { useEffect, useState } from 'react';
+import { GameHistory } from '../history/gameHistory';
 
 const buttons = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const winConditions = [
@@ -18,8 +20,8 @@ export function Board() {
     const [turn, setTurn] = useState(states.playerOne);
     const [gameOver, setGameOver] = useState(false);
     const [boardState, setBoardState] = useState([...defaultBoardState]);
-    const [winningCondition, setWinningCondition] = useState([]);
     const [gameResults, setGameResults] = useState([]);
+    const [winningCondition, setWinningCondition] = useState([]);
 
     useEffect(() => {
         const playerOneWins = calculateWin(states.playerOne)
