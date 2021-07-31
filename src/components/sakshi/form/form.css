@@ -1,0 +1,9 @@
+.FormBody{
+    display: flex;
+    flex-direction: column;
+}
+button{
+    color:white;
+    background: red;
+    font-weight: bold;
+}
