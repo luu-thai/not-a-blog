@@ -1,0 +1,16 @@
+.Form{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items:center;
+    height:100vh;
+}
+.FormHeader{
+   margin:20px;
+}
+.MainContainer{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    width: 50%
+}

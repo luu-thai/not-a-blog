@@ -1,25 +1,40 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from 'react';
+import { Luu } from './components/luu/luu';
+import { Blog } from './components/sakshi/sakshi';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const pages = { sakshi: 'Sakshi', luu: 'Luu' }
+  const [state, setState ] = useState(null)
+
+  console.log('Current State:', state);
+
+  const handleLink = (pages) => setState(pages);
+
+  if (state === pages.sakshi) {
+  
+    return <Blog/>
+  
+  } else if(state === pages.luu) {
+
+    return <Luu/>;
+
+  } else {
+  
+    return (
+      <div className="App-body">
+        <div className="buttonLinks">  
+            <button onClick={() => (handleLink(pages.sakshi))} className="App-link" type='button'>
+              <b>Sakshi</b>
+            </button>
+            <button onClick={() => (handleLink(pages.luu))} className="App-link" type='button'>
+              <b> Luu</b>
+            </button>
+        </div>
+      </div>
+    );
+  
+  }
 }
 
 export default App;
