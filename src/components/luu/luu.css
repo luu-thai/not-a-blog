@@ -1,7 +1,25 @@
 .main {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-direction: column;
     align-items: center; 
     min-height: 100vh;
+}
+
+.header {
+    height: 5rem;
+    width: 100vw;
+    border-bottom: solid;
+}
+
+.body {
+    display: flex;
+    flex: auto;
+    width: 100vw;
+}
+
+.footer {
+    height: 5rem;
+    width: 100vw;
+    border-top: solid;
 }

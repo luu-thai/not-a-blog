@@ -1,3 +1,10 @@
+.boardMain {
+    display: flex;
+    flex: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 
 .board {
     display: grid;
@@ -23,11 +30,14 @@
 }
 
 .boardSpace {
+    font-weight: 800;
+    font-family: cursive;
+    font-size: xxx-large;
     border: dashed;
     width: 100%;
     HEIGHT: 100%;
     text-align: center;
-    line-height: 4.5;
+    line-height: 1.5;
 }
 
 .selectable:hover {

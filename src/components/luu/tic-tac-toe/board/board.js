@@ -1,26 +1,39 @@
 import './board.css';
 import '../history/gameHistory';
 import React, { useEffect, useState } from 'react';
-import { GameHistory } from '../history/gameHistory';
 
-const buttons = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const spaces = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 const winConditions = [
     [0, 1, 2],
     [3, 4, 5],
-    [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6]
+    [6, 7, 8], 
+    [0, 3, 6], 
+    [1, 4, 7],
+    [2, 5, 8], 
+    [0, 4, 8],
+    [2, 4, 6]
 ]
+
 const states = {
     empty: '',
     playerOne: 'O',
     playerTwo: 'X'
 }
-const defaultBoardState = [states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty, states.empty];
 
-export function Board() {
-    const [turn, setTurn] = useState(states.playerOne);
-    const [gameOver, setGameOver] = useState(false);
+const defaultBoardState = [
+    states.empty, states.empty, states.empty,
+    states.empty, states.empty, states.empty,
+    states.empty, states.empty, states.empty
+];
+
+export function Board(props) {
+    const { 
+        gameOver, setGameOver, 
+        handleGameWin 
+    } = props;
+
     const [boardState, setBoardState] = useState([...defaultBoardState]);
-    const [gameResults, setGameResults] = useState([]);
+    const [turn, setTurn] = useState(states.playerOne);
     const [winningCondition, setWinningCondition] = useState([]);
 
     useEffect(() => {
@@ -29,21 +42,20 @@ export function Board() {
 
         if (playerOneWins) {
             setWinningCondition(playerOneWins);
-            setGameResults([states.playerOne, ...gameResults]);
+            handleGameWin(states.playerOne, boardState);
         }
 
         if (playerTwoWins) {
             setWinningCondition(playerTwoWins);
-            setGameResults([states.playerTwo, ...gameResults]);
+            handleGameWin(states.playerTwo, boardState);
         }
         if (playerTwoWins || playerOneWins) setGameOver(true);
-        if (boardState.every(position => position !== states.empty)) setGameOver(true);
+        else if (boardState.every(position => position !== states.empty)) {
+            setGameOver(true);
+            handleGameWin('CATS GAME', boardState);
+        }
     }, [turn]
     );
-
-    useEffect(() => {
-        if(gameOver) console.log(gameResults);
-    });
 
     function calculateWin(playerSymbol) {
         const playerPositions = [];
@@ -67,10 +79,10 @@ export function Board() {
     }
 
     return (
-        <div>
+        <div className='boardMain'>
             <div className='board'>
                 {
-                    buttons.map((buttonIndex) =>
+                    spaces.map((buttonIndex) =>
                         <div
                             onClick={() => draw(buttonIndex)}
                             className={
@@ -85,7 +97,7 @@ export function Board() {
                     )
                 }
             </div>
-            <button className='resetButton' style={{ width: "325px" }} onClick={() => reset()}> One More Again </button>
+            <button className='resetButton' style={{ width: "325px" }} onClick={reset}> One More Again </button>
         </div>
     )
 }
